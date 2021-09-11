@@ -1,5 +1,6 @@
 {
   "name": "pathfinding-visualizer",
+  "homepage": "http://juvin2899.github.io/pathfinding-visualizer",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,16 +12,15 @@
     "react-bootstrap": "^1.3.0",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
-    "save-dev": "0.0.1-security",
-    "serve": "^12.0.0"
+    "save-dev": "0.0.1-security"
   },
   "scripts": {
     "predeploy": "npm run build",
-    "start": "serve -s build",
+    "deploy": "gh-pages -d build",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "heroku-postbuild": "npm install && npm run build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -36,5 +36,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
   }
 }

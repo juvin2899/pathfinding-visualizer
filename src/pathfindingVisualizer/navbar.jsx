@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import "./navbar.css";
 
 const brand = window.innerWidth > 600 ? "Pathfinding Visualizer" : "Pathfinder";
@@ -9,14 +9,6 @@ const NavBar = (props) => {
   const [pathState, setPathState] = useState(false); //whether there is path on grid
   const [mazeState, setMazeState] = useState(false); //whether there is maze on grid
   const [speedState, setSpeedState] = useState("Slow");
-
-  // state = {
-  //   algorithm: "Visualize Algorithm",
-  //   maze: "Generate Maze",
-  //   pathState: false, //whether there is path on grid
-  //   mazeState: false, //whether there is maze on grid
-  //   speedState: "Slow",
-  // };
 
   function selectAlgorithm(selection) {
     //if one algorithm is running we cannot select and run another algorithm
@@ -76,18 +68,10 @@ const NavBar = (props) => {
     } else {
       setPathState(true);
       if (algorithm === "Visualize Dijkstra") props.visualizeDijkstra();
-      // else if (algorithm === "Visualize A*")
-      //   props.visualizeAStar();
-      // else if (algorithm === "Visualize Greedy BFS")
-      //   props.visualizeGreedyBFS();
-      // else if (algorithm === "Visualize Bidirectional Greedy")
-      //   props.visualizeBidirectionalGreedySearch();
       else if (algorithm === "Visualize Breadth First Search")
         props.visualizeBFS();
       else if (algorithm === "Visualize Depth First Search")
         props.visualizeDFS();
-      // else if (algorithm === "Visualize Random Walk")
-      //   props.visualizeRandomWalk();
     }
   }
 
@@ -157,10 +141,7 @@ const NavBar = (props) => {
 
   return (
     <nav className="navbar navbar-expand navbar-dark bg-dark">
-      <a
-        className="navbar-brand h1 mb-0"
-        href="/"
-      >
+      <a className="navbar-brand h1 mb-0" href="/">
         {brand}
       </a>
       <div className="collapse navbar-collapse" id="navbarNavDropdown">
@@ -185,30 +166,7 @@ const NavBar = (props) => {
                 >
                   Dijkstra's Algorithm
                 </button>
-                {/* <button
-                    className="dropdown-item btn-light"
-                    type="button"
-                    onClick={() => selectAlgorithm("Visualize A*")}
-                  >
-                    A* Algorithm
-                  </button> */}
-                {/* <button
-                    className="dropdown-item btn-light"
-                    type="button"
-                    onClick={() => selectAlgorithm("Visualize Greedy BFS")}
-                  >
-                    Greedy Best First Search
-                  </button> */}
-                {/* <button
-                    className="dropdown-item btn-light"
-                    type="button"
-                    onClick={() =>
-                      selectAlgorithm("Visualize Bidirectional Greedy")
-                    }
-                  >
-                    Bidirectional Greedy Search
-                  </button> */}
-                {/* <div className="dropdown-divider"></div> */}
+
                 <button
                   className="dropdown-item btn-light"
                   type="button"
@@ -227,15 +185,6 @@ const NavBar = (props) => {
                 >
                   Depth First Search
                 </button>
-                {/* <button
-                    className="dropdown-item btn-light"
-                    type="button"
-                    onClick={() =>
-                      selectAlgorithm("Visualize Random Walk")
-                    }
-                  >
-                    Random Walk
-                  </button> */}
               </div>
             </div>{" "}
           </li>
@@ -344,7 +293,6 @@ const NavBar = (props) => {
         >
           Clear Gird
         </button>
-        {/* </ul> */}
       </div>
     </nav>
   );

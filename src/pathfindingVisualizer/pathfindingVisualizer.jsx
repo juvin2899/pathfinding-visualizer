@@ -8,10 +8,7 @@ import {
   dijkstra,
   getNodesInShortestPathOrderDijkstra,
 } from "../pathfindingAlgorithms/dijkstra";
-// import {
-//   astar,
-//   getNodesInShortestPathOrderAstar,
-// } from "../pathfindingAlgorithms/astar";
+
 import {
   breadthFirstSearch,
   getNodesInShortestPathOrderBFS,
@@ -20,15 +17,6 @@ import {
   depthFirstSearch,
   getNodesInShortestPathOrderDFS,
 } from "../pathfindingAlgorithms/depthFirstSearch";
-// import { randomWalk } from "../pathfindingAlgorithms/randomWalk";
-// import {
-//   greedyBFS,
-//   getNodesInShortestPathOrderGreedyBFS,
-// } from "../pathfindingAlgorithms/greedyBestFirstSearch";
-// import {
-//   bidirectionalGreedySearch,
-//   getNodesInShortestPathOrderBidirectionalGreedySearch,
-// } from "../pathfindingAlgorithms/bidirectionalGreedySearch";
 
 //Maze Algorithms
 import { randomMaze } from "../mazeAlgorithms/randomMaze";
@@ -58,18 +46,6 @@ const PathfindingVisualizer = () => {
   const [numColumns, setNumColumns] = useState(initialNumColumns);
   const [speed, setSpeed] = useState(10);
   const [mazeSpeed, setMazeSpeed] = useState(10);
-  // state = {
-  //   grid: [],
-  //   mouseIsPressed: false,
-  //   visualizingAlgorithm: false,
-  //   generatingMaze: false,
-  //   width: window.innerWidth,
-  //   height: window.innerHeight,
-  //   numRows: initialNumRows,
-  //   numColumns: initialNumColumns,
-  //   speed: 10,
-  //   mazeSpeed: 10,
-  // };
 
   //useEffect
   useEffect(() => {
@@ -78,7 +54,7 @@ const PathfindingVisualizer = () => {
     return () => {
       window.removeEventListener("resize", updateDimensions);
     };
-  }, [window, width]);
+  }, [numRows, numColumns, width]);
 
   const updateDimensions = () => {
     setWidth(window.innerWidth);
@@ -89,13 +65,6 @@ const PathfindingVisualizer = () => {
     setSpeed(path);
     setMazeSpeed(maze);
   };
-
-  // //useEffect
-  // componentDidMount() {
-  //   window.addEventListener("resize", this.updateDimensions);
-  //   const grid = getInitialGrid(this.state.numRows, this.state.numColumns);
-  //   this.setState({ grid });
-  // }
 
   //when click mouse button wall created
   const handleMouseDown = (row, col) => {
@@ -143,11 +112,6 @@ const PathfindingVisualizer = () => {
     setGrid(newGrid);
     setVisualizingAlgorithm(false);
     setGeneratingMaze(false);
-    // this.setState({
-    //   grid: newGrid,
-    //   visualizingAlgorithm: false,
-    //   generatingMaze: false,
-    // });
   };
 
   const clearPath = () => {
@@ -169,11 +133,6 @@ const PathfindingVisualizer = () => {
     setGrid(newGrid);
     setVisualizingAlgorithm(false);
     setGeneratingMaze(false);
-    // this.setState({
-    //   grid: newGrid,
-    //   visualizingAlgorithm: false,
-    //   generatingMaze: false,
-    // });
   };
 
   //print shortest path
@@ -241,72 +200,6 @@ const PathfindingVisualizer = () => {
     }
   };
 
-  //   const animateRandomWalk = (visitedNodesInOrder) => {
-  //     for (let i = 1; i <= visitedNodesInOrder.length; i++) {
-  //       if (i === visitedNodesInOrder.length) {
-  //         setTimeout(() => {
-  //           setVisualizingAlgorithm(false);
-  //           //this.setState({ visualizingAlgorithm: false });
-  //         }, i * speed);
-  //         return;
-  //       }
-  //       let node = visitedNodesInOrder[i];
-  //       if (i === visitedNodesInOrder.length - 1) {
-  //         setTimeout(() => {
-  //           //finish node
-  //           document.getElementById(`node-${node.row}-${node.col}`).className =
-  //             "node node-finish-reached";
-  //         }, i * speed);
-  //         continue;
-  //       }
-  //       setTimeout(() => {
-  //         //visited node
-  //         document.getElementById(`node-${node.row}-${node.col}`).className =
-  //           "node node-visited";
-  //       }, i * speed);
-  //     }
-  //   };
-
-  //   function animateBidirectionalAlgorithm(
-  //     visitedNodesInOrderStart,
-  //     visitedNodesInOrderFinish,
-  //     nodesInShortestPathOrder,
-  //     isShortedPath
-  //   ) {
-  //     let len = Math.max(
-  //       visitedNodesInOrderStart.length,
-  //       visitedNodesInOrderFinish.length
-  //     );
-  //     for (let i = 1; i <= len; i++) {
-  //       let nodeA = visitedNodesInOrderStart[i];
-  //       let nodeB = visitedNodesInOrderFinish[i];
-  //       if (i === visitedNodesInOrderStart.length) {
-  //         setTimeout(() => {
-  //           let visitedNodesInOrder = getVisitedNodesInOrder(
-  //             visitedNodesInOrderStart,
-  //             visitedNodesInOrderFinish
-  //           );
-  //           if (isShortedPath) {
-  //             animateShortestPath(nodesInShortestPathOrder, visitedNodesInOrder);
-  //           } else {
-  //             setVisualizingAlgorithm(false);
-  //             //setState({ visualizingAlgorithm: false });
-  //           }
-  //         }, i * speed);
-  //         return;
-  //       }
-  //       setTimeout(() => {
-  //         //visited nodes
-  //         if (nodeA !== undefined)
-  //           document.getElementById(`node-${nodeA.row}-${nodeA.col}`).className =
-  //             "node node-visited";
-  //         if (nodeB !== undefined)
-  //           document.getElementById(`node-${nodeB.row}-${nodeB.col}`).className =
-  //             "node node-visited";
-  //       }, i * speed);
-  //     }
-  //   }
-
   function visualizeDijkstra() {
     if (visualizingAlgorithm || generatingMaze) {
       return;
@@ -322,22 +215,6 @@ const PathfindingVisualizer = () => {
       animateAlgorithm(visitedNodesInOrder, nodesInShortestPathOrder);
     }, speed);
   }
-
-  //   function visualizeAStar() {
-  //     if (visualizingAlgorithm || generatingMaze) {
-  //       return;
-  //     }
-  //     setVisualizingAlgorithm(true);
-  //     //this.setState({ visualizingAlgorithm: true });
-  //     setTimeout(() => {
-  //       const startNode = grid[startNodeRow][startNodeCol];
-  //       const finishNode = grid[finishNodeRow][finishNodeCol];
-  //       const visitedNodesInOrder = astar(grid, startNode, finishNode);
-  //       const nodesInShortestPathOrder =
-  //         getNodesInShortestPathOrderAstar(finishNode);
-  //       animateAlgorithm(visitedNodesInOrder, nodesInShortestPathOrder);
-  //     }, speed);
-  //   }
 
   function visualizeBFS() {
     if (visualizingAlgorithm || generatingMaze) {
@@ -374,67 +251,6 @@ const PathfindingVisualizer = () => {
       animateAlgorithm(visitedNodesInOrder, nodesInShortestPathOrder);
     }, speed);
   }
-
-  //   function visualizeRandomWalk() {
-  //     if (visualizingAlgorithm || generatingMaze) {
-  //       return;
-  //     }
-  //     setVisualizingAlgorithm(true);
-  //     // this.setState({ visualizingAlgorithm: true });
-  //     setTimeout(() => {
-  //       const startNode = grid[startNodeRow][startNodeCol];
-  //       const finishNode = grid[finishNodeRow][finishNodeCol];
-  //       const visitedNodesInOrder = randomWalk(grid, startNode, finishNode);
-  //       animateRandomWalk(visitedNodesInOrder);
-  //     }, speed);
-  //   }
-
-  //   function visualizeGreedyBFS() {
-  //     if (visualizingAlgorithm || generatingMaze) {
-  //       return;
-  //     }
-  //     setVisualizingAlgorithm(true);
-  //     // this.setState({ visualizingAlgorithm: true });
-  //     setTimeout(() => {
-  //       const startNode = grid[startNodeRow][startNodeCol];
-  //       const finishNode = grid[finishNodeRow][finishNodeCol];
-  //       const visitedNodesInOrder = greedyBFS(grid, startNode, finishNode);
-  //       const nodesInShortestPathOrder =
-  //         getNodesInShortestPathOrderGreedyBFS(finishNode);
-  //       animateAlgorithm(visitedNodesInOrder, nodesInShortestPathOrder);
-  //     }, speed);
-  //   }
-
-  //   function visualizeBidirectionalGreedySearch() {
-  //     if (visualizingAlgorithm || generatingMaze) {
-  //       return;
-  //     }
-  //     setVisualizingAlgorithm(true);
-  //     //this.setState({ visualizingAlgorithm: true });
-  //     setTimeout(() => {
-  //       const startNode = grid[startNodeRow][startNodeCol];
-  //       const finishNode = grid[finishNodeRow][finishNodeCol];
-  //       const visitedNodesInOrder = bidirectionalGreedySearch(
-  //         grid,
-  //         startNode,
-  //         finishNode
-  //       );
-  //       const visitedNodesInOrderStart = visitedNodesInOrder[0];
-  //       const visitedNodesInOrderFinish = visitedNodesInOrder[1];
-  //       const isShortedPath = visitedNodesInOrder[2];
-  //       const nodesInShortestPathOrder =
-  //         getNodesInShortestPathOrderBidirectionalGreedySearch(
-  //           visitedNodesInOrderStart[visitedNodesInOrderStart.length - 1],
-  //           visitedNodesInOrderFinish[visitedNodesInOrderFinish.length - 1]
-  //         );
-  //       animateBidirectionalAlgorithm(
-  //         visitedNodesInOrderStart,
-  //         visitedNodesInOrderFinish,
-  //         nodesInShortestPathOrder,
-  //         isShortedPath
-  //       );
-  //     }, speed);
-  //   }
 
   //animation for walls
   const animateMaze = (walls) => {
@@ -521,12 +337,8 @@ const PathfindingVisualizer = () => {
         visualizingAlgorithm={visualizingAlgorithm}
         generatingMaze={generatingMaze}
         visualizeDijkstra={visualizeDijkstra}
-        // visualizeAStar={visualizeAStar}
-        // visualizeGreedyBFS={visualizeGreedyBFS}
-        // visualizeBidirectionalGreedySearch={visualizeBidirectionalGreedySearch}
         visualizeBFS={visualizeBFS}
         visualizeDFS={visualizeDFS}
-        // visualizeRandomWalk={visualizeRandomWalk}
         generateRandomMaze={generateRandomMaze}
         generateRecursiveDivisionMaze={generateRecursiveDivisionMaze}
         generateVerticalMaze={generateVerticalMaze}
@@ -752,25 +564,5 @@ const updateNodesForRender = (
     newGrid[node.row][node.col] = newNode;
   }
 };
-
-// const getVisitedNodesInOrder = (
-//   visitedNodesInOrderStart,
-//   visitedNodesInOrderFinish
-// ) => {
-//   let visitedNodesInOrder = [];
-//   let n = Math.max(
-//     visitedNodesInOrderStart.length,
-//     visitedNodesInOrderFinish.length
-//   );
-//   for (let i = 0; i < n; i++) {
-//     if (visitedNodesInOrderStart[i] !== undefined) {
-//       visitedNodesInOrder.push(visitedNodesInOrderStart[i]);
-//     }
-//     if (visitedNodesInOrderFinish[i] !== undefined) {
-//       visitedNodesInOrder.push(visitedNodesInOrderFinish[i]);
-//     }
-//   }
-//   return visitedNodesInOrder;
-// };
 
 export default PathfindingVisualizer;

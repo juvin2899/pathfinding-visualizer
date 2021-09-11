@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./node.css";
 
 const Node = (props) => {
@@ -52,8 +52,8 @@ const Node = (props) => {
       style={{
         "--width": `${cellWidth}px`,
         "--height": `${cellHeight}px`,
-        borderLeft: col != 0 && 0,
-        borderTop: row != 0 && 0,
+        borderLeft: col !== 0 && 0,
+        borderTop: row !== 0 && 0,
       }}
       onMouseEnter={() => onMouseEnter(row, col)}
       onMouseDown={() => onMouseDown(row, col)}
