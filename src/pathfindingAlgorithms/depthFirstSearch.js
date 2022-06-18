@@ -14,7 +14,7 @@ export function depthFirstSearch(grid, startNode, finishNode) {
     let unvisitedNeighbours = getUnvisitedNeighbours(closestNode, grid);
     for (let unvisitedNeighbour of unvisitedNeighbours) {
       unvisitedNeighbour.previousNode = closestNode;
-      unvisitedNodes.unshift(unvisitedNeighbour);
+      unvisitedNodes.unshift(unvisitedNeighbour);   //push at top of stack
     }
   }
   return visitedNodesInOrder;

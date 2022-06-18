@@ -67,8 +67,7 @@ const NavBar = (props) => {
       setAlgorithm("Select an Algorithm!");
     } else {
       setPathState(true);
-      if (algorithm === "Visualize Dijkstra") props.visualizeDijkstra();
-      else if (algorithm === "Visualize Breadth First Search")
+      if (algorithm === "Visualize Breadth First Search")
         props.visualizeBFS();
       else if (algorithm === "Visualize Depth First Search")
         props.visualizeDFS();
@@ -88,8 +87,6 @@ const NavBar = (props) => {
     } else {
       setMazeState(true);
       if (maze === "Generate Random Maze") props.generateRandomMaze();
-      else if (maze === "Generate Recursive Maze")
-        props.generateRecursiveDivisionMaze();
       else if (maze === "Generate Vertical Maze") props.generateVerticalMaze();
       else if (maze === "Generate Horizontal Maze")
         props.generateHorizontalMaze();
@@ -159,13 +156,6 @@ const NavBar = (props) => {
                 Algorithms
               </a>
               <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <button
-                  className="dropdown-item btn-light"
-                  type="button"
-                  onClick={() => selectAlgorithm("Visualize Dijkstra")}
-                >
-                  Dijkstra's Algorithm
-                </button>
 
                 <button
                   className="dropdown-item btn-light"
@@ -209,13 +199,7 @@ const NavBar = (props) => {
                 >
                   Random Maze
                 </button>
-                <button
-                  className="dropdown-item btn-light"
-                  type="button"
-                  onClick={() => selectMaze("Generate Recursive Maze")}
-                >
-                  Recursive Division Maze
-                </button>
+            
                 <button
                   className="dropdown-item btn-light"
                   type="button"

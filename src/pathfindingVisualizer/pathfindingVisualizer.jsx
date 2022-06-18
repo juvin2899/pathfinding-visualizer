@@ -3,12 +3,6 @@ import "./pathfindingVisualizer.css";
 import Node from "./Node/node";
 import NavBar from "./navbar";
 
-//Pathfinding Algorithms
-import {
-  dijkstra,
-  getNodesInShortestPathOrderDijkstra,
-} from "../pathfindingAlgorithms/dijkstra";
-
 import {
   breadthFirstSearch,
   getNodesInShortestPathOrderBFS,
@@ -20,7 +14,6 @@ import {
 
 //Maze Algorithms
 import { randomMaze } from "../mazeAlgorithms/randomMaze";
-import { recursiveDivisionMaze } from "../mazeAlgorithms/recursiveDivision";
 import { verticalMaze } from "../mazeAlgorithms/verticalMaze";
 import { horizontalMaze } from "../mazeAlgorithms/horizontalMaze";
 
@@ -71,7 +64,6 @@ const PathfindingVisualizer = () => {
     const newGrid = getNewGridWithWalls(grid, row, col);
     setGrid(newGrid);
     setMouseIsPressed(true);
-    //this.setState({ grid: newGrid, mouseIsPressed: true });
   };
 
   //when mouse button is pressed and we moving our cursor then wall is created
@@ -80,14 +72,14 @@ const PathfindingVisualizer = () => {
       const newGrid = getNewGridWithWalls(grid, row, col);
       setGrid(newGrid);
       setMouseIsPressed(true);
-      //this.setState({ grid: newGrid, mouseIsPressed: true });
+
     }
   };
 
   //when release mouse button
   const handleMouseUp = () => {
     setMouseIsPressed(false);
-    //this.setState({ mouseIsPressed: false });
+    
   };
 
   const clearGrid = () => {
@@ -181,7 +173,6 @@ const PathfindingVisualizer = () => {
       }
     }
     setGrid(newGrid);
-    //this.setState({ grid: newGrid });
     for (let i = 1; i <= visitedNodesInOrder.length; i++) {
       let node = visitedNodesInOrder[i];
       //if we reach the finish node then start animate shortest path route and stop the animate algo fun
@@ -200,28 +191,11 @@ const PathfindingVisualizer = () => {
     }
   };
 
-  function visualizeDijkstra() {
-    if (visualizingAlgorithm || generatingMaze) {
-      return;
-    }
-    setVisualizingAlgorithm(true);
-    //this.setState({ visualizingAlgorithm: true });
-    setTimeout(() => {
-      const startNode = grid[startNodeRow][startNodeCol];
-      const finishNode = grid[finishNodeRow][finishNodeCol];
-      const visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
-      const nodesInShortestPathOrder =
-        getNodesInShortestPathOrderDijkstra(finishNode);
-      animateAlgorithm(visitedNodesInOrder, nodesInShortestPathOrder);
-    }, speed);
-  }
-
   function visualizeBFS() {
     if (visualizingAlgorithm || generatingMaze) {
       return;
     }
     setVisualizingAlgorithm(true);
-    // this.setState({ visualizingAlgorithm: true });
     setTimeout(() => {
       const startNode = grid[startNodeRow][startNodeCol];
       const finishNode = grid[finishNodeRow][finishNodeCol];
@@ -241,7 +215,6 @@ const PathfindingVisualizer = () => {
       return;
     }
     setVisualizingAlgorithm(true);
-    // this.setState({ visualizingAlgorithm: true });
     setTimeout(() => {
       const startNode = grid[startNodeRow][startNodeCol];
       const finishNode = grid[finishNodeRow][finishNodeCol];
@@ -261,7 +234,6 @@ const PathfindingVisualizer = () => {
           let newGrid = getNewGridWithMaze(grid, walls);
           setGrid(newGrid);
           setGeneratingMaze(false);
-          //this.setState({ grid: newGrid, generatingMaze: false });
         }, i * mazeSpeed);
         return;
       }
@@ -280,25 +252,10 @@ const PathfindingVisualizer = () => {
       return;
     }
     setGeneratingMaze(true);
-    //this.setState({ generatingMaze: true });
     setTimeout(() => {
       const startNode = grid[startNodeRow][startNodeCol];
       const finishNode = grid[finishNodeRow][finishNodeCol];
       const walls = randomMaze(grid, startNode, finishNode);
-      animateMaze(walls);
-    }, mazeSpeed);
-  }
-
-  function generateRecursiveDivisionMaze() {
-    if (visualizingAlgorithm || generatingMaze) {
-      return;
-    }
-    setGeneratingMaze(true);
-    // this.setState({ generatingMaze: true });
-    setTimeout(() => {
-      const startNode = grid[startNodeRow][startNodeCol];
-      const finishNode = grid[finishNodeRow][finishNodeCol];
-      const walls = recursiveDivisionMaze(grid, startNode, finishNode);
       animateMaze(walls);
     }, mazeSpeed);
   }
@@ -308,7 +265,6 @@ const PathfindingVisualizer = () => {
       return;
     }
     setGeneratingMaze(true);
-    //this.setState({ generatingMaze: true });
     setTimeout(() => {
       const startNode = grid[startNodeRow][startNodeCol];
       const finishNode = grid[finishNodeRow][finishNodeCol];
@@ -322,7 +278,6 @@ const PathfindingVisualizer = () => {
       return;
     }
     setGeneratingMaze(true);
-    // this.setState({ generatingMaze: true });
     setTimeout(() => {
       const startNode = grid[startNodeRow][startNodeCol];
       const finishNode = grid[finishNodeRow][finishNodeCol];
@@ -336,11 +291,9 @@ const PathfindingVisualizer = () => {
       <NavBar
         visualizingAlgorithm={visualizingAlgorithm}
         generatingMaze={generatingMaze}
-        visualizeDijkstra={visualizeDijkstra}
         visualizeBFS={visualizeBFS}
         visualizeDFS={visualizeDFS}
         generateRandomMaze={generateRandomMaze}
-        generateRecursiveDivisionMaze={generateRecursiveDivisionMaze}
         generateVerticalMaze={generateVerticalMaze}
         generateHorizontalMaze={generateHorizontalMaze}
         clearGrid={clearGrid}

@@ -47,6 +47,7 @@ function addWall(num, vertical, startNode, finishNode) {
     }
     tempWalls.push([num, temp]);
   }
+  //if there is noo start or end node in the row = num then remove 1 node at random from the temp walls
   if (!isStartFinish) {
     tempWalls.splice(Math.floor(Math.random() * tempWalls.length), 1);
   }
